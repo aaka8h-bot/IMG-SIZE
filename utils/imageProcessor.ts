@@ -56,8 +56,8 @@ async function processImage(
   const options: Parameters<typeof imageCompression>[1] = {
     maxWidthOrHeight: Math.max(width, height),
     useWebWorker: true,
-    quality: settings.quality / 100,
-    fileType: outputFormat,
+    maxSizeMB: 1024 * (settings.quality / 100), // Convert quality percentage to MB
+    fileType: outputFormat.split('/')[1], // Extract format without 'image/'
   };
   
   // If we need specific dimensions, use canvas resizing
